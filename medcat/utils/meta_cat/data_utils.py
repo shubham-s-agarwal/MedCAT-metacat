@@ -188,14 +188,14 @@ def encode_category_values(data: Dict, existing_category_value2id: Optional[Dict
             label_data[data[i][2]] = label_data[data[i][2]] + 1
 
     # If a label has no data, changing the mapping
-    if 0 in label_data.values():
-        category_value2id_: Dict = {}
-        keys_ls = [key for key, value in label_data.items() if value != 0]
-        for k in keys_ls:
-            category_value2id_[k] = len(category_value2id_)
+    # if 0 in label_data.values():
+    #     category_value2id_: Dict = {}
+    #     keys_ls = [key for key, value in label_data.items() if value != 0]
+    #     for k in keys_ls:
+    #         category_value2id_[k] = len(category_value2id_)
 
-        logger.warning("Labels found with 0 data; updates made\nFinal label encoding mapping:", category_value2id_)
-        category_value2id = category_value2id_
+    #     logger.warning("Labels found with 0 data; updates made\nFinal label encoding mapping:", category_value2id_)
+    #     category_value2id = category_value2id_
 
     for c in category_values:
         if c not in category_value2id:
