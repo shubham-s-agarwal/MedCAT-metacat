@@ -344,6 +344,7 @@ class MetaCAT(PipeRunner):
 
         # Check is the name there
         category_name = g_config['category_name']
+        print("category_name",category_name)
         if category_name not in data:
             raise Exception("The category name does not exist in this json file.")
 
