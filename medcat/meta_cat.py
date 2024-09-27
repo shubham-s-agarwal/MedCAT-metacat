@@ -92,12 +92,12 @@ class MetaCAT(PipeRunner):
             from medcat.utils.meta_cat.models import BertForMetaAnnotation
             model = BertForMetaAnnotation(config)
 
-            if not config.model.model_freeze_layers:
-                peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=8, lora_alpha=16,
-                                         target_modules=["query", "value"], lora_dropout=0.2)
+            # if not config.model.model_freeze_layers:
+            #     peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=8, lora_alpha=16,
+            #                              target_modules=["query", "value"], lora_dropout=0.2)
 
-                model = get_peft_model(model, peft_config)
-                # model.print_trainable_parameters()
+            #     model = get_peft_model(model, peft_config)
+            #     # model.print_trainable_parameters()
 
             logger.info("BERT model used for classification")
 
