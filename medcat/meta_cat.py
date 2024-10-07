@@ -93,7 +93,7 @@ class MetaCAT(PipeRunner):
             model = BertForMetaAnnotation(config)
 
             if not config.model.model_freeze_layers:
-                peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=8, lora_alpha=16,
+                peft_config = LoraConfig(task_type=TaskType.SEQ_CLS, inference_mode=False, r=16, lora_alpha=32,
                                          target_modules=["query", "value"], lora_dropout=0.2)
 
                 model = get_peft_model(model, peft_config)
