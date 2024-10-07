@@ -173,8 +173,10 @@ class BertForMetaAnnotation(nn.Module):
         )
 
         x_all = []
+        print("input_ids",input_ids)
+        print("center_positions",center_positions)
         for i, indices in enumerate(center_positions):
-            this_hidden: torch.Tensor = outputs.last_hidden_state[i, indices, :]
+            this_hidden: torch.Tensor = outputs.last_hidden_state[i2, indices, :]
             to_append, _ = torch.max(this_hidden, dim=0)
             x_all.append(to_append)
 
