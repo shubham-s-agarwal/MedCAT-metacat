@@ -45,6 +45,7 @@ def prepare_from_json(data: Dict,
 
     for project in data['projects']:
         for document in project['documents']:
+            print("*************\nTEXT",text)
             text = str(document['text'])
             if lowercase:
                 text = text.lower()
