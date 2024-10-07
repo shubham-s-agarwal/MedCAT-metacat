@@ -61,7 +61,8 @@ class LSTM(nn.Module):
 
         # Get what we need
         # row_indices = torch.arange(0, x.size(0)).long()
-
+        print("input_ids", input_ids)
+        print("center_positions", center_positions)
         # If this is  True we will always take the last state and not CPOS
         if ignore_cpos:
             x = hidden[0]
@@ -176,7 +177,7 @@ class BertForMetaAnnotation(nn.Module):
         print("input_ids",input_ids)
         print("center_positions",center_positions)
         for i, indices in enumerate(center_positions):
-            this_hidden: torch.Tensor = outputs.last_hidden_state[i2, indices, :]
+            this_hidden: torch.Tensor = outputs.last_hidden_state[i, indices, :]
             to_append, _ = torch.max(this_hidden, dim=0)
             x_all.append(to_append)
 
