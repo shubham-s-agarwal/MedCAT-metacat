@@ -73,6 +73,7 @@ class LSTM(nn.Module):
         else:
             x_all = []
             for i, indices in enumerate(center_positions):
+                print("trying to extract",i,indices)
                 this_hidden = x[i, indices, :]
                 to_append, _ = torch.max(this_hidden, dim=0)
                 x_all.append(to_append)
