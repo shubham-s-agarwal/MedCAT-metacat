@@ -611,6 +611,7 @@ class MetaCAT(PipeRunner):
                         data.extend(doc._.share_tokens[0])
                         doc_ind2positions[i] = doc._.share_tokens[1]
                 print("*****************data",data)
+                print("*****************docs",docs)
                 all_predictions, all_confidences = predict(self.model, data, config)
                 for i, doc in enumerate(docs):
                     start_ind, end_ind, ent_id2ind = doc_ind2positions[i]
