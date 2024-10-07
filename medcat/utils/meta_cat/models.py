@@ -63,6 +63,7 @@ class LSTM(nn.Module):
         # row_indices = torch.arange(0, x.size(0)).long()
         print("input_ids", input_ids)
         print("center_positions", center_positions)
+        print("x.shape",x.shape)
         # If this is  True we will always take the last state and not CPOS
         if ignore_cpos:
             x = hidden[0]
