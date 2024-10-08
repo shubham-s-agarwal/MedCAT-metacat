@@ -53,7 +53,7 @@ class LSTM(nn.Module):
             for idx in zero_indices:
                 if idx!=len(input_ids)-1:
                     if idx+1 not in zero_indices:
-                        mask[idx] = 1
+                        mask[0][idx] = 1
                         to_fix.append(idx)
 
         if len(to_fix) > 0:
