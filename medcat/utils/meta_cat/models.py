@@ -45,7 +45,8 @@ class LSTM(nn.Module):
             mask = x != self.config.model['padding_idx']
         else:
             mask = attention_mask
-        if self.config.model['padding_idx'] == 0:
+        print(self.config.model['padding_idx'],type(self.config.model['padding_idx']))
+        if self.config.model['padding_idx'] == '0':
             to_fix = []
             zero_indices = torch.where(input_ids[0] == 0)[0].numpy()
             print("zero_indices", zero_indices)
