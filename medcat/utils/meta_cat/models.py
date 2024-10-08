@@ -45,7 +45,8 @@ class LSTM(nn.Module):
             mask = x != self.config.model['padding_idx']
         else:
             mask = attention_mask
-
+        print("MASK",mask)
+        print("2nd arg",mask.sum(1).int().view(-1).cpu())
         # Embed the input: from id -> vec
         x = self.embeddings(x)  # x.shape = batch_size x sequence_length x emb_size
         print("Embeddings",x.shape)
