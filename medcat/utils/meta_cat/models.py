@@ -48,6 +48,7 @@ class LSTM(nn.Module):
 
         to_fix = []
         zero_indices = torch.where(input_ids == 0)[0].numpy()
+        print("zero_indices", zero_indices)
         if len(zero_indices) > 0:
             for idx in zero_indices:
                 if idx!=len(input_ids)-1:
