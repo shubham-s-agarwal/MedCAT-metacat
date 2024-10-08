@@ -48,13 +48,13 @@ class LSTM(nn.Module):
 
         # Embed the input: from id -> vec
         x = self.embeddings(x)  # x.shape = batch_size x sequence_length x emb_size
-        print("Embeddings",x.shape,x)
+        print("Embeddings",x.shape)
 
         # Tell RNN to ignore padding and set the batch_first to True
         x = nn.utils.rnn.pack_padded_sequence(x, mask.sum(1).int().view(-1).cpu(), batch_first=True,
                                               enforce_sorted=False)
 
-        print("Prepared being passed",x.shape,x)
+        print("Prepared being passed",x)
         # Run 'x' through the RNN
         x, hidden = self.rnn(x)
         print("Got back",x.shape,x)
