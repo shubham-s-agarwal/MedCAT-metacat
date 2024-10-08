@@ -47,7 +47,7 @@ class LSTM(nn.Module):
             mask = attention_mask
 
         to_fix = []
-        zero_indices = torch.where(input_ids == 0)[0].numpy()
+        zero_indices = torch.where(input_ids[0] == 0)[0].numpy()
         print("zero_indices", zero_indices)
         if len(zero_indices) > 0:
             for idx in zero_indices:
