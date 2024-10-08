@@ -48,13 +48,16 @@ class LSTM(nn.Module):
 
         # Embed the input: from id -> vec
         x = self.embeddings(x)  # x.shape = batch_size x sequence_length x emb_size
+        print("Embeddings",x.shape,x)
 
         # Tell RNN to ignore padding and set the batch_first to True
         x = nn.utils.rnn.pack_padded_sequence(x, mask.sum(1).int().view(-1).cpu(), batch_first=True,
                                               enforce_sorted=False)
 
+        print("Prepared being passed",x.shape,x)
         # Run 'x' through the RNN
         x, hidden = self.rnn(x)
+        print("Got back",x.shape,x)
 
         # Add the padding again
         x, _ = torch.nn.utils.rnn.pad_packed_sequence(x, batch_first=True)
@@ -63,7 +66,7 @@ class LSTM(nn.Module):
         # row_indices = torch.arange(0, x.size(0)).long()
         print("input_ids", input_ids)
         print("center_positions", center_positions)
-        print("x.shape",x.shape)
+        print("After unpacking",x.shape,x)
         # If this is  True we will always take the last state and not CPOS
         if ignore_cpos:
             x = hidden[0]
