@@ -69,10 +69,8 @@ class LSTM(nn.Module):
         x = nn.utils.rnn.pack_padded_sequence(x, mask.sum(1).int().view(-1).cpu(), batch_first=True,
                                               enforce_sorted=False)
 
-        print("Prepared being passed",x)
         # Run 'x' through the RNN
         x, hidden = self.rnn(x)
-        print("Got back",x)
 
         # Add the padding again
         x, _ = torch.nn.utils.rnn.pad_packed_sequence(x, batch_first=True)
