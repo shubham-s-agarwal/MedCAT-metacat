@@ -45,19 +45,19 @@ class LSTM(nn.Module):
             mask = x != self.config.model['padding_idx']
         else:
             mask = attention_mask
-
-        to_fix = []
-        zero_indices = torch.where(input_ids[0] == 0)[0].numpy()
-        print("zero_indices", zero_indices)
-        if len(zero_indices) > 0:
-            for idx in zero_indices:
-                if idx!=len(input_ids)-1:
-                    if idx+1 not in zero_indices:
+        if self.config.model['padding_idx'] == 0:
+            to_fix = []
+            zero_indices = torch.where(input_ids[0] == 0)[0].numpy()
+            print("zero_indices", zero_indices)
+            if len(zero_indices) > 0:
+                for idx in zero_indices:
+                    to_check = [x for x in range(idx + 1, len(input_ids[0]))]
+                    if to_check not in zero_indices:
                         mask[0][idx] = 1
                         to_fix.append(idx)
 
-        if len(to_fix) > 0:
-            print("These are fixed",to_fix)
+            if len(to_fix) > 0:
+                print("These are fixed",to_fix)
 
         print("MASK",mask)
         print("2nd arg",mask.sum(1).int().view(-1).cpu())
